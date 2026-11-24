@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EM Code Studio | Desarrollo Web y Sistemas</title>
+<meta name="description" content="EM Code Studio: páginas web modernas y sistemas de venta para negocios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="animaciones.css">
+<script>
+  // Aplica el tema guardado ANTES de pintar la página, para evitar el parpadeo
+  // de un tema cambiando al otro al cargar.
+  (function () {
+    const saved = localStorage.getItem('em-code-theme');
+    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+  })();
+</script>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- =============================================
+    INTRO - PANTALLA DE PRIMERA IMPRESIÓN
+    RF02: Animaciones al cargar la página
+============================================= -->
+<div class="intro-screen" id="introScreen">
+    <div class="intro-particles" id="introParticles"></div>
+    <!-- Estrellas de fondo -->
+    <div class="intro-stars"></div>
+    <!-- Flash de película -->
+    <div class="intro-content">
+    <!-- Logo centrado que vuela al header -->
+    <div class="intro-logo-center">
+        <svg class="intro-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+        <linearGradient id="introGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#33ff99"/>
+        <stop offset="100%" stop-color="#b388ff"/>
+        </linearGradient>
+        <filter id="introGlow">
+        <feGaussianBlur stdDeviation="4" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        </defs>
+        <circle class="intro-ring-1" cx="100" cy="100" r="90" fill="none" stroke="rgba(51,255,153,0.15)" stroke-width="1"/>
+        <circle class="intro-ring-2" cx="100" cy="100" r="75" fill="none" stroke="rgba(179,136,255,0.1)" stroke-width="1"/>
+        <path class="intro-path" d="M85,60 C105,72 75,95 95,108 C110,118 85,130 95,148"
+        fill="none" stroke="url(#introGrad)" stroke-width="12"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#introGlow)"/>
+        <circle class="intro-dot" cx="85" cy="60" r="8" fill="#33ff99" filter="url(#introGlow)"/>
+        <polygon class="intro-tri" points="88,153 102,153 95,168" fill="#b388ff" filter="url(#introGlow)"/>
+        <path class="intro-arc" d="M30,100 A70,70 0 0 1 170,100"
+        fill="none" stroke="rgba(51,255,153,0.2)" stroke-width="1" stroke-dasharray="5,8"/>
+    </svg>
+    <div class="intro-title">
+        <span class="il" style="--i:0">E</span><span class="il" style="--i:1">M</span>
+        <span class="il intro-space"> </span>
+        <span class="il" style="--i:3">C</span><span class="il" style="--i:4">O</span>
+        <span class="il" style="--i:5">D</span><span class="il" style="--i:6">E</span>
+        <span class="il intro-space"> </span>
+        <span class="il" style="--i:8">S</span><span class="il" style="--i:9">T</span>
+        <span class="il" style="--i:10">U</span><span class="il" style="--i:11">D</span>
+        <span class="il" style="--i:12">I</span><span class="il" style="--i:13">O</span>
+    </div>
+    <p class="intro-tagline">Desarrollo Web &amp; Sistemas</p>
+    </div><!-- end intro-logo-center -->
+    <div class="intro-bar" style="display:none"><div class="intro-bar-fill"></div></div>
+    <!-- Línea de carga cinematográfica -->
+    <div class="intro-progress-wrap">
+        <div class="intro-progress-label">
+        <span>EM CODE STUDIO</span>
+        <span class="intro-progress-pct">0%</span>
+        </div>
+        <div class="intro-progress-track">
+        <div class="intro-progress-fill"></div>
+        <div class="intro-progress-dot"></div>
+        </div>
+    </div>
+    </div>
+</div>
+<!-- =============================================
+    HEADER / NAV
+    RF06: Navegación fluida entre secciones
+============================================= -->
+<header class="header" id="header">
+    <nav class="nav container">
+    <a href="#inicio" class="logo">
+        <svg class="logo-icon" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+            <linearGradient id="navGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#33ff99"/>
+            <stop offset="100%" stop-color="#b388ff"/>
+            </linearGradient>
+        </defs>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.5"/>
+        <path class="logo-draw" d="M85,60 C105,72 75,95 95,108 C110,118 85,130 95,148"
+            fill="none" stroke="url(#navGrad)" stroke-width="12" stroke-linecap="round"/>
+        <circle cx="85" cy="60" r="7" fill="#33ff99"/>
+        <polygon points="88,153 102,153 95,168" fill="#b388ff"/>
+        </svg>
+        <span class="logo-text">EM CODE STUDIO</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#tecnologias">Tecnologías</a></li>
+        <li><a href="#portafolio">Portafolio</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#contacto" class="btn-nav">Contáctanos</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar a modo claro">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>
+        </svg>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+    </button>
+    </nav>
+    <div class="nav-mobile" id="navMobile">
+    <a href="#inicio">Inicio</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#tecnologias">Tecnologías</a>
+    <a href="#portafolio">Portafolio</a>
+    <a href="#galeria">Galería</a>
+    <a href="#contacto">Contáctanos</a>
+    </div>
+</header>
+
+<!-- =============================================
+    SECCIÓN 1: INICIO / HERO
+    RF02: Animación al cargar
+    RF05: SVG animado
+============================================= -->
+<section class="hero" id="inicio">
+    <div class="hero-particles" id="heroParticles"></div>
+    <div class="container hero-grid">
+    <div class="hero-content">
+        <p class="hero-eyebrow">Bienvenido a</p>
+        <div class="hero-badge">⚡ Desarrollo profesional</div>
+        <h1 class="hero-title">
+        Creamos tu<br>
+        <span class="hero-highlight">presencia digital</span><br>
+        desde cero
+        </h1>
+        <p class="hero-desc">Páginas web modernas, sistemas de venta y soluciones tecnológicas para que tu negocio crezca en el mundo digital.</p>
+        <div class="hero-btns">
+        <a href="#servicios" class="btn btn-primary">Ver servicios</a>
+        <a href="#portafolio" class="btn btn-outline">Ver portafolio</a>
+        </div>
+        <div class="hero-stats">
+        <div class="hstat"><span class="hstat-num" data-target="50">0</span>+<p>Proyectos</p></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-num" data-target="30">0</span>+<p>Clientes</p></div>
+        <div class="hstat-div"></div>
+        <div class="hstat"><span class="hstat-num" data-target="3">0</span><p>Años exp.</p></div>
+        </div>
+    </div>
+
+    <!-- SVG BANNER ANIMADO (RF05) -->
+    <div class="hero-banner">
+        <svg class="banner-svg" viewBox="0 0 460 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Banner tecnológico animado">
+        <defs>
+            <linearGradient id="bannerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#33ff99"/>
+            <stop offset="100%" stop-color="#b388ff"/>
+            </linearGradient>
+            <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+        </defs>
+        <polygon points="230,18 390,108 390,268 230,358 70,268 70,108"
+            fill="none" stroke="rgba(179,136,255,0.12)" stroke-width="1.5"/>
+        <rect x="160" y="130" width="140" height="95" rx="8"
+            fill="rgba(13,13,18,0.9)" stroke="url(#bannerGrad)" stroke-width="2" filter="url(#glow)"/>
+        <rect x="160" y="130" width="140" height="14" rx="8" fill="rgba(179,136,255,0.2)"/>
+        <circle cx="172" cy="137" r="3" fill="rgba(255,100,100,0.7)"/>
+        <circle cx="182" cy="137" r="3" fill="rgba(255,200,50,0.7)"/>
+        <circle cx="192" cy="137" r="3" fill="rgba(51,255,153,0.7)"/>
+        <line class="code-line" x1="173" y1="158" x2="223" y2="158" stroke="#33ff99" stroke-width="2.5" stroke-linecap="round"/>
+        <line class="code-line" x1="173" y1="169" x2="208" y2="169" stroke="#b388ff" stroke-width="2.5" stroke-linecap="round" style="animation-delay:0.3s"/>
+        <line class="code-line" x1="173" y1="180" x2="218" y2="180" stroke="#33ff99" stroke-width="2.5" stroke-linecap="round" style="animation-delay:0.6s"/>
+        <line class="code-line" x1="173" y1="191" x2="200" y2="191" stroke="#b388ff" stroke-width="2" stroke-linecap="round" style="animation-delay:0.9s"/>
+        <rect x="215" y="225" width="30" height="8" rx="3" fill="rgba(179,136,255,0.3)"/>
+        <!-- Nodos -->
+        <circle class="net-node" cx="100" cy="108" r="12" fill="rgba(51,255,153,0.1)" stroke="#33ff99" stroke-width="2"/>
+        <circle cx="100" cy="108" r="5" fill="#33ff99" filter="url(#glow)"/>
+        <circle class="net-node" cx="360" cy="108" r="12" fill="rgba(179,136,255,0.1)" stroke="#b388ff" stroke-width="2" style="animation-delay:0.5s"/>
+        <circle cx="360" cy="108" r="5" fill="#b388ff" filter="url(#glow)"/>
+        <circle class="net-node" cx="390" cy="240" r="12" fill="rgba(51,255,153,0.1)" stroke="#33ff99" stroke-width="2" style="animation-delay:1s"/>
+        <circle cx="390" cy="240" r="5" fill="#33ff99" filter="url(#glow)"/>
+        <circle class="net-node" cx="70" cy="240" r="12" fill="rgba(179,136,255,0.1)" stroke="#b388ff" stroke-width="2" style="animation-delay:1.5s"/>
+        <circle cx="70" cy="240" r="5" fill="#b388ff" filter="url(#glow)"/>
+        <circle class="net-node" cx="230" cy="355" r="12" fill="rgba(51,255,153,0.1)" stroke="#33ff99" stroke-width="2" style="animation-delay:0.8s"/>
+        <circle cx="230" cy="355" r="5" fill="#33ff99" filter="url(#glow)"/>
+        <!-- Líneas de red -->
+        <line class="net-line" x1="230" y1="177" x2="100" y2="108" stroke="rgba(51,255,153,0.25)" stroke-width="1.5"/>
+        <line class="net-line" x1="230" y1="177" x2="360" y2="108" stroke="rgba(51,255,153,0.25)" stroke-width="1.5" style="animation-delay:0.3s"/>
+        <line class="net-line" x1="230" y1="177" x2="390" y2="240" stroke="rgba(179,136,255,0.25)" stroke-width="1.5" style="animation-delay:0.6s"/>
+        <line class="net-line" x1="230" y1="177" x2="70" y2="240" stroke="rgba(179,136,255,0.25)" stroke-width="1.5" style="animation-delay:0.9s"/>
+        <line class="net-line" x1="230" y1="177" x2="230" y2="355" stroke="rgba(51,255,153,0.2)" stroke-width="1.5" style="animation-delay:1.2s"/>
+        <!-- Partícula viajera SVG -->
+        <circle r="5" fill="#33ff99" filter="url(#glow)" opacity="0.9">
+            <animateMotion dur="4s" repeatCount="indefinite"
+            path="M230,177 L100,108 L360,108 L390,240 L70,240 L230,355 L230,177"/>
+            <animate attributeName="opacity" values="0;1;1;1;1;1;0" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Etiquetas -->
+        <g class="tech-label"><rect x="72" y="90" width="52" height="18" rx="9" fill="rgba(51,255,153,0.1)" stroke="rgba(51,255,153,0.3)" stroke-width="1"/>
+            <text x="98" y="103" font-family="Orbitron,sans-serif" font-size="8" fill="#33ff99" text-anchor="middle">HTML5</text></g>
+        <g class="tech-label" style="animation-delay:0.4s"><rect x="326" y="90" width="52" height="18" rx="9" fill="rgba(179,136,255,0.1)" stroke="rgba(179,136,255,0.3)" stroke-width="1"/>
+            <text x="352" y="103" font-family="Orbitron,sans-serif" font-size="8" fill="#b388ff" text-anchor="middle">CSS3</text></g>
+        <g class="tech-label" style="animation-delay:0.8s"><rect x="358" y="230" width="52" height="18" rx="9" fill="rgba(51,255,153,0.1)" stroke="rgba(51,255,153,0.3)" stroke-width="1"/>
+            <text x="384" y="243" font-family="Orbitron,sans-serif" font-size="7" fill="#33ff99" text-anchor="middle">JS</text></g>
+        <g class="tech-label" style="animation-delay:1.2s"><rect x="30" y="230" width="52" height="18" rx="9" fill="rgba(179,136,255,0.1)" stroke="rgba(179,136,255,0.3)" stroke-width="1"/>
+            <text x="56" y="243" font-family="Orbitron,sans-serif" font-size="8" fill="#b388ff" text-anchor="middle">SVG</text></g>
+        <g class="tech-label" style="animation-delay:1.6s"><rect x="200" y="362" width="60" height="18" rx="9" fill="rgba(51,255,153,0.1)" stroke="rgba(51,255,153,0.3)" stroke-width="1"/>
+            <text x="230" y="375" font-family="Orbitron,sans-serif" font-size="7" fill="#33ff99" text-anchor="middle">GSAP</text></g>
+        </svg>
+    </div>
+    </div>
+    <div class="scroll-indicator"><div class="scroll-dot"></div></div>
+</section>
+
+<!-- =============================================
+    SECCIÓN 2: NOSOTROS
+    RF01: Información, RF04: Typewriter
+============================================= -->
+    <section class="about" id="nosotros">
+    <div class="container">
+    <div class="about-grid">
+        <div data-aos="fade-right" data-aos-duration="800">
+        <span class="section-tag">Quiénes somos</span>
+        <h2 class="section-title">Convertimos ideas en <span class="text-gradient">soluciones digitales</span></h2>
+        <p class="typewriter-text" id="typewriterText"
+            data-text="En EM Code Studio diseñamos y desarrollamos páginas web modernas y sistemas de gestión para negocios. Combinamos creatividad y tecnología para ayudar a tu empresa a crecer en el mundo digital."></p>
+        <div class="about-features">
+            <div class="about-feat" data-aos="fade-up" data-aos-delay="100">
+            <span class="feat-icon">⚡</span>
+            <div><h4>Rápido y eficiente</h4><p>Sitios optimizados que cargan en segundos</p></div>
+            </div>
+            <div class="about-feat" data-aos="fade-up" data-aos-delay="200">
+            <span class="feat-icon">🎨</span>
+            <div><h4>Diseño moderno</h4><p>Interfaces atractivas y profesionales</p></div>
+            </div>
+            <div class="about-feat" data-aos="fade-up" data-aos-delay="300">
+            <span class="feat-icon">📱</span>
+            <div><h4>100% Responsive</h4><p>Funciona perfecto en cualquier dispositivo</p></div>
+            </div>
+        </div>
+        </div>
+        <!-- SVG laptop animado (RF05) -->
+        <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="150">
+        <svg class="about-svg" viewBox="0 0 340 280" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+            <linearGradient id="aboutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#33ff99" stop-opacity="0.15"/>
+                <stop offset="100%" stop-color="#b388ff" stop-opacity="0.05"/>
+            </linearGradient>
+            </defs>
+            <ellipse cx="170" cy="140" rx="130" ry="110" fill="url(#aboutGrad)"/>
+            <rect x="80" y="90" width="180" height="115" rx="10" fill="rgba(22,22,29,0.95)" stroke="#b388ff" stroke-width="1.5"/>
+            <rect x="88" y="98" width="164" height="97" rx="6" fill="rgba(13,13,18,0.9)"/>
+            <text x="96" y="118" font-family="monospace" font-size="9" fill="#33ff99">&lt;html&gt;</text>
+            <text x="104" y="130" font-family="monospace" font-size="9" fill="#b388ff">  &lt;body&gt;</text>
+            <text x="112" y="142" font-family="monospace" font-size="9" fill="rgba(255,255,255,0.6)">    Hello!</text>
+            <text x="104" y="154" font-family="monospace" font-size="9" fill="#b388ff">  &lt;/body&gt;</text>
+            <text x="96" y="166" font-family="monospace" font-size="9" fill="#33ff99">&lt;/html&gt;</text>
+            <rect class="cursor-blink" x="142" y="159" width="6" height="10" fill="#33ff99" rx="1"/>
+            <rect x="60" y="205" width="220" height="10" rx="5" fill="rgba(22,22,29,0.8)" stroke="rgba(179,136,255,0.3)" stroke-width="1"/>
+            <circle class="about-orbit" cx="170" cy="140" r="125" fill="none" stroke="rgba(51,255,153,0.06)" stroke-width="1" stroke-dasharray="8,12"/>
+            <g class="orbit-group">
+            <circle cx="295" cy="140" r="7" fill="rgba(51,255,153,0.2)" stroke="#33ff99" stroke-width="1.5"/>
+            <circle cx="295" cy="140" r="3" fill="#33ff99"/>
+            </g>
+        </svg>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- =============================================
+    SECCIÓN 3: SERVICIOS
+    RF04: Animaciones con eventos (hover, click)
+============================================= -->
+<section class="services" id="servicios">
+    <div class="container">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Lo que hacemos</span>
+        <h2 class="section-title">Nuestros <span class="text-gradient">servicios</span></h2>
+        <p class="section-sub">Soluciones completas para llevar tu negocio al siguiente nivel</p>
+    </div>
+    <div class="services-grid">
+
+        <article class="service-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="card-glow"></div>
+        <div class="card-illustration">
+            <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="monGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(51,255,153,0.15)"/>
+                <stop offset="100%" stop-color="rgba(179,136,255,0.08)"/>
+                </linearGradient>
+            </defs>
+            <!-- Monitor -->
+            <rect x="20" y="8" width="160" height="98" rx="8" fill="url(#monGrad)" stroke="#33ff99" stroke-width="1.5"/>
+            <!-- Barra superior -->
+            <rect x="20" y="8" width="160" height="18" rx="8" fill="rgba(51,255,153,0.12)"/>
+            <circle cx="34" cy="17" r="4" fill="rgba(255,100,100,0.7)"/>
+            <circle cx="46" cy="17" r="4" fill="rgba(255,200,50,0.7)"/>
+            <circle cx="58" cy="17" r="4" fill="rgba(51,255,153,0.7)"/>
+            <!-- Código animado línea 1 -->
+            <rect x="32" y="34" width="0" height="6" rx="3" fill="#33ff99" opacity="0.9">
+                <animate attributeName="width" values="0;80;80;0" dur="3s" repeatCount="indefinite" begin="0s"/>
+            </rect>
+            <!-- Código línea 2 -->
+            <rect x="32" y="48" width="0" height="6" rx="3" fill="#b388ff" opacity="0.8">
+                <animate attributeName="width" values="0;55;55;0" dur="3s" repeatCount="indefinite" begin="0.4s"/>
+            </rect>
+            <!-- Código línea 3 -->
+            <rect x="32" y="62" width="0" height="6" rx="3" fill="#33ff99" opacity="0.7">
+                <animate attributeName="width" values="0;70;70;0" dur="3s" repeatCount="indefinite" begin="0.8s"/>
+            </rect>
+            <!-- Código línea 4 -->
+            <rect x="32" y="76" width="0" height="6" rx="3" fill="#b388ff" opacity="0.6">
+                <animate attributeName="width" values="0;40;40;0" dur="3s" repeatCount="indefinite" begin="1.2s"/>
+            </rect>
+            <!-- Cursor parpadeante -->
+            <rect x="110" y="76" width="3" height="8" rx="1" fill="#33ff99">
+                <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite"/>
+            </rect>
+            <!-- Base del monitor -->
+            <rect x="88" y="106" width="24" height="6" rx="3" fill="rgba(179,136,255,0.3)"/>
+            <rect x="74" y="112" width="52" height="4" rx="2" fill="rgba(179,136,255,0.15)"/>
+            <!-- Brillo -->
+            <ellipse cx="70" cy="30" rx="18" ry="8" fill="rgba(51,255,153,0.06)" transform="rotate(-20,70,30)"/>
+            </svg>
+        </div>
+        <h3>Páginas web</h3>
+        <p>Sitios modernos, rápidos y responsive con animaciones profesionales.</p>
+        <ul class="card-list">
+            <li>✓ Diseño personalizado</li>
+            <li>✓ Animaciones CSS/JS</li>
+            <li>✓ SEO optimizado</li>
+        </ul>
+        <a href="https://wa.me/51999999999?text=Hola,%20quiero%20info%20sobre%20páginas%20web" class="btn btn-card" target="_blank">Cotizar →</a>
+        </article>
+
+        <article class="service-card service-card--featured" data-aos="fade-up" data-aos-delay="150">
+        <div class="card-glow"></div>
+        <div class="card-badge">Popular</div>
+        <div class="card-illustration">
+            <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="sysGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(179,136,255,0.15)"/>
+                <stop offset="100%" stop-color="rgba(51,255,153,0.08)"/>
+                </linearGradient>
+            </defs>
+            <!-- Panel principal -->
+            <rect x="14" y="8" width="172" height="110" rx="8" fill="url(#sysGrad)" stroke="#b388ff" stroke-width="1.5"/>
+            <!-- Header panel -->
+            <rect x="14" y="8" width="172" height="16" rx="8" fill="rgba(179,136,255,0.15)"/>
+            <rect x="22" y="13" width="40" height="5" rx="2" fill="rgba(255,255,255,0.2)"/>
+            <!-- Barras de gráfico animadas -->
+            <rect x="28" y="40" width="18" height="0" rx="3" fill="#b388ff" opacity="0.8" transform="scale(1,-1) translate(0,-118)">
+                <animate attributeName="height" values="0;45;45;0" dur="2.5s" repeatCount="indefinite" begin="0s"/>
+            </rect>
+            <rect x="54" y="40" width="18" height="0" rx="3" fill="#33ff99" opacity="0.8" transform="scale(1,-1) translate(0,-118)">
+                <animate attributeName="height" values="0;60;60;0" dur="2.5s" repeatCount="indefinite" begin="0.3s"/>
+            </rect>
+            <rect x="80" y="40" width="18" height="0" rx="3" fill="#b388ff" opacity="0.7" transform="scale(1,-1) translate(0,-118)">
+                <animate attributeName="height" values="0;35;35;0" dur="2.5s" repeatCount="indefinite" begin="0.6s"/>
+            </rect>
+            <rect x="106" y="40" width="18" height="0" rx="3" fill="#33ff99" opacity="0.9" transform="scale(1,-1) translate(0,-118)">
+                <animate attributeName="height" values="0;70;70;0" dur="2.5s" repeatCount="indefinite" begin="0.9s"/>
+            </rect>
+            <rect x="132" y="40" width="18" height="0" rx="3" fill="#b388ff" opacity="0.8" transform="scale(1,-1) translate(0,-118)">
+                <animate attributeName="height" values="0;50;50;0" dur="2.5s" repeatCount="indefinite" begin="1.2s"/>
+            </rect>
+            <rect x="158" y="40" width="18" height="0" rx="3" fill="#33ff99" opacity="0.7" transform="scale(1,-1) translate(0,-118)">
+                <animate attributeName="height" values="0;80;80;0" dur="2.5s" repeatCount="indefinite" begin="1.5s"/>
+            </rect>
+            <!-- Línea base del gráfico -->
+            <line x1="22" y1="96" x2="178" y2="96" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+            <!-- Mini tabla debajo -->
+            <rect x="22" y="100" width="50" height="5" rx="2" fill="rgba(255,255,255,0.08)"/>
+            <rect x="80" y="100" width="40" height="5" rx="2" fill="rgba(51,255,153,0.2)"/>
+            <rect x="128" y="100" width="30" height="5" rx="2" fill="rgba(179,136,255,0.2)"/>
+            <!-- Punto de alerta animado -->
+            <circle cx="170" cy="30" r="5" fill="#33ff99" opacity="0">
+                <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            </svg>
+        </div>
+        <h3>Sistemas de venta</h3>
+        <p>Controla tus ventas, inventario y clientes de forma simple y rápida.</p>
+        <ul class="card-list">
+            <li>✓ Control de inventario</li>
+            <li>✓ Reportes de ventas</li>
+            <li>✓ Gestión de clientes</li>
+        </ul>
+        <a href="https://wa.me/51999999999?text=Hola,%20quiero%20info%20sobre%20sistemas" class="btn btn-primary" target="_blank">Cotizar →</a>
+        </article>
+
+        <article class="service-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="card-glow"></div>
+        <div class="card-illustration">
+            <svg viewBox="0 0 200 130" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="supGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="rgba(51,255,153,0.12)"/>
+                <stop offset="100%" stop-color="rgba(179,136,255,0.08)"/>
+                </linearGradient>
+            </defs>
+            <circle cx="100" cy="65" r="55" fill="url(#supGrad)" stroke="rgba(51,255,153,0.2)" stroke-width="1"/>
+            <!-- Engranaje grande (gira) -->
+            <g transform="translate(100,65)">
+                <animateTransform attributeName="transform" type="rotate"
+                values="0 0 0;360 0 0" dur="8s" repeatCount="indefinite" additive="sum"/>
+                <circle cx="0" cy="0" r="26" fill="none" stroke="#33ff99" stroke-width="2.5"/>
+                <circle cx="0" cy="0" r="10" fill="rgba(51,255,153,0.1)" stroke="#33ff99" stroke-width="2"/>
+                <!-- Dientes del engranaje -->
+                <rect x="-4" y="-34" width="8" height="10" rx="2" fill="#33ff99" opacity="0.8"/>
+                <rect x="-4" y="24" width="8" height="10" rx="2" fill="#33ff99" opacity="0.8"/>
+                <rect x="-34" y="-4" width="10" height="8" rx="2" fill="#33ff99" opacity="0.8"/>
+                <rect x="24" y="-4" width="10" height="8" rx="2" fill="#33ff99" opacity="0.8"/>
+                <rect x="-26" y="-26" width="8" height="8" rx="2" fill="#33ff99" opacity="0.6" transform="rotate(45,0,0) translate(24,-4)"/>
+                <rect x="18" y="-26" width="8" height="8" rx="2" fill="#33ff99" opacity="0.6" transform="rotate(-45,0,0) translate(24,-4)"/>
+            </g>
+            <!-- Engranaje pequeño (gira al revés) -->
+            <g transform="translate(148,36)">
+                <animateTransform attributeName="transform" type="rotate"
+                values="0 0 0;-360 0 0" dur="4s" repeatCount="indefinite" additive="sum"/>
+                <circle cx="0" cy="0" r="14" fill="none" stroke="#b388ff" stroke-width="2"/>
+                <circle cx="0" cy="0" r="5" fill="rgba(179,136,255,0.15)" stroke="#b388ff" stroke-width="1.5"/>
+                <rect x="-3" y="-19" width="6" height="7" rx="1.5" fill="#b388ff" opacity="0.8"/>
+                <rect x="-3" y="12" width="6" height="7" rx="1.5" fill="#b388ff" opacity="0.8"/>
+                <rect x="-19" y="-3" width="7" height="6" rx="1.5" fill="#b388ff" opacity="0.8"/>
+                <rect x="12" y="-3" width="7" height="6" rx="1.5" fill="#b388ff" opacity="0.8"/>
+            </g>
+            <!-- Engranaje pequeño izquierda -->
+            <g transform="translate(52,36)">
+                <animateTransform attributeName="transform" type="rotate"
+                values="0 0 0;-360 0 0" dur="5s" repeatCount="indefinite" additive="sum"/>
+                <circle cx="0" cy="0" r="12" fill="none" stroke="#b388ff" stroke-width="1.5"/>
+                <circle cx="0" cy="0" r="4" fill="rgba(179,136,255,0.15)" stroke="#b388ff" stroke-width="1.5"/>
+                <rect x="-2.5" y="-17" width="5" height="6" rx="1.5" fill="#b388ff" opacity="0.7"/>
+                <rect x="-2.5" y="11" width="5" height="6" rx="1.5" fill="#b388ff" opacity="0.7"/>
+                <rect x="-17" y="-2.5" width="6" height="5" rx="1.5" fill="#b388ff" opacity="0.7"/>
+                <rect x="11" y="-2.5" width="6" height="5" rx="1.5" fill="#b388ff" opacity="0.7"/>
+            </g>
+            <!-- Pulso de check central -->
+            <circle cx="100" cy="65" r="6" fill="#33ff99">
+                <animate attributeName="r" values="6;9;6" dur="2s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Tick animado -->
+            <polyline points="95,65 99,69 106,61" fill="none" stroke="#0d0d12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+            </polyline>
+            </svg>
+        </div>
+        <h3>Soporte y mantenimiento</h3>
+        <p>Tu página o sistema siempre actualizado y funcionando perfecto.</p>
+        <ul class="card-list">
+            <li>✓ Actualizaciones</li>
+            <li>✓ Corrección de errores</li>
+            <li>✓ Soporte técnico</li>
+        </ul>
+        <a href="https://wa.me/51999999999?text=Hola,%20quiero%20info%20sobre%20mantenimiento" class="btn btn-card" target="_blank">Cotizar</a>
+        </article>
+
+    </div>
+    </div>
+</section>
+
+<!-- =============================================
+    SECCIÓN 4: TECNOLOGÍAS
+    RF05: SVG animado, RF07: Ejemplos prácticos
+============================================= -->
+<section class="technologies" id="tecnologias">
+    <div class="container">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Nuestras herramientas</span>
+        <h2 class="section-title">Tecnologías que <span class="text-gradient">utilizamos</span></h2>
+        <p class="section-sub">Trabajamos con las mejores tecnologías web del mercado</p>
+    </div>
+    <div class="tech-grid">
+        <div class="tech-card" data-aos="zoom-in" data-aos-delay="0">
+        <svg class="tech-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="8,4 52,4 48,52 30,58 12,52" fill="rgba(227,79,38,0.15)" stroke="#e34f26" stroke-width="1.5"/>
+            <text x="30" y="36" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="10" font-weight="bold" fill="#e34f26">HTML5</text>
+        </svg>
+        <span>HTML5</span>
+        </div>
+        <div class="tech-card" data-aos="zoom-in" data-aos-delay="80">
+        <svg class="tech-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="8,4 52,4 48,52 30,58 12,52" fill="rgba(38,77,228,0.15)" stroke="#264de4" stroke-width="1.5"/>
+            <text x="30" y="36" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="10" font-weight="bold" fill="#264de4">CSS3</text>
+        </svg>
+        <span>CSS3</span>
+        </div>
+        <div class="tech-card" data-aos="zoom-in" data-aos-delay="160">
+        <svg class="tech-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="48" height="48" rx="4" fill="rgba(240,219,79,0.15)" stroke="#f0db4f" stroke-width="1.5"/>
+            <text x="30" y="38" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="14" font-weight="bold" fill="#f0db4f">JS</text>
+        </svg>
+        <span>JavaScript</span>
+        </div>
+        <div class="tech-card" data-aos="zoom-in" data-aos-delay="240">
+        <svg class="tech-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="24" fill="rgba(51,255,153,0.1)" stroke="#33ff99" stroke-width="1.5"/>
+            <path d="M20,30 Q25,20 30,30 Q35,40 40,30" fill="none" stroke="#33ff99" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="20" cy="30" r="3" fill="#33ff99"/>
+            <circle cx="40" cy="30" r="3" fill="#33ff99"/>
+        </svg>
+        <span>SVG</span>
+        </div>
+        <div class="tech-card" data-aos="zoom-in" data-aos-delay="320">
+        <svg class="tech-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="48" height="48" rx="24" fill="rgba(136,206,57,0.15)" stroke="#88CE02" stroke-width="1.5"/>
+            <text x="30" y="34" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="10" font-weight="bold" fill="#88CE02">GSAP</text>
+        </svg>
+        <span>GSAP</span>
+        </div>
+        <div class="tech-card" data-aos="zoom-in" data-aos-delay="400">
+        <svg class="tech-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="48" height="48" rx="8" fill="rgba(179,136,255,0.1)" stroke="#b388ff" stroke-width="1.5"/>
+            <text x="30" y="34" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="11" font-weight="bold" fill="#b388ff">AOS</text>
+        </svg>
+        <span>AOS</span>
+        </div>
+    </div>
+
+    <!-- Barras de habilidades (RF03: scroll animation) -->
+    <div class="skills-bars" data-aos="fade-up" data-aos-delay="100">
+        <h3 class="skills-title">Nivel de dominio</h3>
+        <div class="skill-bar">
+        <div class="skill-info"><span>HTML5 / CSS3</span><span class="skill-pct">95%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="--level:95%"></div></div>
+        </div>
+        <div class="skill-bar">
+        <div class="skill-info"><span>JavaScript</span><span class="skill-pct">85%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="--level:85%"></div></div>
+        </div>
+        <div class="skill-bar">
+        <div class="skill-info"><span>SVG Animado</span><span class="skill-pct">80%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="--level:80%"></div></div>
+        </div>
+        <div class="skill-bar">
+        <div class="skill-info"><span>GSAP / AOS</span><span class="skill-pct">75%</span></div>
+        <div class="skill-track"><div class="skill-fill" style="--level:75%"></div></div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- =============================================
+    SECCIÓN 5: PORTAFOLIO
+    RF03: Scroll animations
+============================================= -->
+<section class="portfolio" id="portafolio">
+    <div class="container">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Nuestro trabajo</span>
+        <h2 class="section-title">Proyectos <span class="text-gradient">realizados</span></h2>
+        <p class="section-sub">Algunos de los proyectos que hemos desarrollado</p>
+    </div>
+    <div class="portfolio-grid">
+
+        <div class="portfolio-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="portfolio-preview">
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="180" fill="rgba(13,13,18,0.9)"/>
+            <rect x="0" y="0" width="280" height="28" fill="rgba(22,22,29,1)"/>
+            <circle cx="16" cy="14" r="5" fill="rgba(255,100,100,0.6)"/>
+            <circle cx="30" cy="14" r="5" fill="rgba(255,200,50,0.6)"/>
+            <circle cx="44" cy="14" r="5" fill="rgba(51,255,153,0.6)"/>
+            <rect x="20" y="40" width="240" height="12" rx="3" fill="rgba(51,255,153,0.2)"/>
+            <rect x="20" y="62" width="160" height="8" rx="3" fill="rgba(255,255,255,0.1)"/>
+            <rect x="20" y="78" width="200" height="8" rx="3" fill="rgba(255,255,255,0.07)"/>
+            <rect x="20" y="100" width="80" height="24" rx="12" fill="rgba(51,255,153,0.2)" stroke="rgba(51,255,153,0.5)" stroke-width="1"/>
+            </svg>
+            <div class="portfolio-overlay">
+            <p>Landing Page</p>
+            <a href="#" class="btn btn-sm">Ver proyecto</a>
+            </div>
+        </div>
+        <div class="portfolio-info">
+            <h3>Tienda Online Demo</h3>
+            <div class="portfolio-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+        </div>
+        </div>
+
+        <div class="portfolio-card" data-aos="fade-up" data-aos-delay="150">
+        <div class="portfolio-preview">
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="180" fill="rgba(10,15,25,0.95)"/>
+            <rect x="0" y="0" width="280" height="28" fill="rgba(15,20,35,1)"/>
+            <circle cx="16" cy="14" r="5" fill="rgba(255,100,100,0.6)"/>
+            <circle cx="30" cy="14" r="5" fill="rgba(255,200,50,0.6)"/>
+            <circle cx="44" cy="14" r="5" fill="rgba(51,255,153,0.6)"/>
+            <rect x="20" y="40" width="240" height="40" rx="6" fill="rgba(179,136,255,0.08)" stroke="rgba(179,136,255,0.15)" stroke-width="1"/>
+            <circle cx="40" cy="60" r="12" fill="rgba(179,136,255,0.2)"/>
+            <rect x="60" y="52" width="100" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+            <rect x="20" y="90" width="240" height="40" rx="6" fill="rgba(51,255,153,0.05)" stroke="rgba(51,255,153,0.1)" stroke-width="1"/>
+            <circle cx="40" cy="110" r="12" fill="rgba(51,255,153,0.2)"/>
+            <rect x="60" y="102" width="80" height="6" rx="3" fill="rgba(255,255,255,0.15)"/>
+            </svg>
+            <div class="portfolio-overlay">
+            <p>Sistema de Gestión</p>
+            <a href="#" class="btn btn-sm">Ver proyecto</a>
+            </div>
+        </div>
+        <div class="portfolio-info">
+            <h3>Sistema de Inventario</h3>
+            <div class="portfolio-tags"><span>JS</span><span>CSS</span><span>SVG</span></div>
+        </div>
+        </div>
+
+        <!-- BRAZA Y SABOR — proyecto real con link -->
+        <div class="portfolio-card portfolio-card--featured" data-aos="fade-up" data-aos-delay="300">
+        <div class="portfolio-badge-new">Nuevo</div>
+        <div class="portfolio-preview">
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="brasaPrev" cx="50%" cy="70%" r="50%">
+                <stop offset="0%" stop-color="rgba(192,57,43,0.3)"/>
+                <stop offset="100%" stop-color="transparent"/>
+                </radialGradient>
+            </defs>
+            <rect width="280" height="180" fill="rgba(20,8,5,0.97)"/>
+            <rect x="0" y="0" width="280" height="28" fill="rgba(30,10,5,1)"/>
+            <circle cx="16" cy="14" r="5" fill="rgba(255,100,100,0.6)"/>
+            <circle cx="30" cy="14" r="5" fill="rgba(255,200,50,0.6)"/>
+            <circle cx="44" cy="14" r="5" fill="rgba(51,255,153,0.6)"/>
+            <circle cx="140" cy="110" r="70" fill="url(#brasaPrev)"/>
+            <text x="140" y="80" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="20" font-weight="bold" fill="rgba(243,156,18,0.95)">Braza</text>
+            <text x="140" y="100" text-anchor="middle" font-family="Playfair Display,Georgia,serif" font-size="14" fill="rgba(192,57,43,0.9)">&amp; Sabor</text>
+            <text x="140" y="125" text-anchor="middle" font-family="Lato,sans-serif" font-size="9" fill="rgba(255,255,255,0.35)" letter-spacing="2">RESTAURANTE DE PARRILLAS</text>
+            <!-- llamas SVG -->
+            <path d="M110 140 Q107 128 111 118 Q115 128 118 118 Q120 128 110 140Z" fill="rgba(230,126,34,0.7)"/>
+            <path d="M160 140 Q157 126 162 114 Q167 126 171 114 Q173 126 160 140Z" fill="rgba(192,57,43,0.7)"/>
+            <rect x="85" y="140" width="110" height="5" rx="2" fill="rgba(192,57,43,0.2)"/>
+            </svg>
+            <div class="portfolio-overlay">
+            <p>Restaurante de Parrillas</p>
+            <button type="button" class="btn btn-sm" onclick="abrirLightbox(2)">Ver proyecto ↗</button>
+            </div>
+        </div>
+        <div class="portfolio-info">
+            <h3>Braza y Sabor</h3>
+            <div class="portfolio-tags"><span>HTML</span><span>CSS</span><span>JS</span><span>AOS</span><span>GSAP</span></div>
+        </div>
+        </div>
+
+        <div class="portfolio-card" data-aos="fade-up" data-aos-delay="450">
+        <div class="portfolio-preview">
+            <svg viewBox="0 0 280 180" xmlns="http://www.w3.org/2000/svg">
+            <rect width="280" height="180" fill="rgba(20,10,5,0.95)"/>
+            <rect x="0" y="0" width="280" height="28" fill="rgba(30,15,8,1)"/>
+            <circle cx="16" cy="14" r="5" fill="rgba(255,100,100,0.6)"/>
+            <circle cx="30" cy="14" r="5" fill="rgba(255,200,50,0.6)"/>
+            <circle cx="44" cy="14" r="5" fill="rgba(51,255,153,0.6)"/>
+            <rect x="20" y="40" width="240" height="90" rx="8" fill="rgba(196,122,43,0.08)" stroke="rgba(196,122,43,0.2)" stroke-width="1"/>
+            <text x="140" y="90" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="rgba(232,168,78,0.8)">Aroma y Sabor</text>
+            <rect x="105" y="100" width="70" height="18" rx="9" fill="rgba(196,122,43,0.3)"/>
+            </svg>
+            <div class="portfolio-overlay">
+            <p>Web Cafetería</p>
+            <a href="#" class="btn btn-sm">Ver proyecto</a>
+            </div>
+        </div>
+        <div class="portfolio-info">
+            <h3>Web Aroma y Sabor</h3>
+            <div class="portfolio-tags"><span>HTML</span><span>CSS</span><span>GSAP</span></div>
+        </div>
+        </div>
+
+    </div>
+    </div>
+</section>
+
+
+<!-- =============================================
+    SECCIÓN GALERÍA
+    Actividad 4: Zoom, rotación, transición suave
+    Evento click para lightbox (JS)
+============================================= -->
+<section class="gallery-sec" id="galeria">
+    <div class="container">
+    <div class="section-header" data-aos="fade-up">
+        <span class="section-tag">Nuestro trabajo</span>
+        <h2 class="section-title">Galería de <span class="text-gradient">proyectos</span></h2>
+        <p class="section-sub">Algunos de los proyectos y trabajos que hemos desarrollado para nuestros clientes</p>
+    </div>
+
+    <div class="gallery-filters" data-aos="fade-up" data-aos-delay="100">
+        <button class="gfilter active" data-filter="all" aria-pressed="true">Todos</button>
+        <button class="gfilter" data-filter="web" aria-pressed="false">Páginas web</button>
+        <button class="gfilter" data-filter="sistema" aria-pressed="false">Sistemas</button>
+        <button class="gfilter" data-filter="diseno" aria-pressed="false">Diseño</button>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+
+        <div class="gallery-item" data-cat="web" data-aos="zoom-in" data-aos-delay="0"
+            tabindex="0" role="button" aria-label="Ver proyecto: Landing Page Empresarial"
+            onclick="abrirLightbox(0)">
+        <div class="gallery-thumb">
+            <img src="lading page empresarial.png" alt="Landing Page Empresarial">
+            
+            <div class="gallery-overlay">
+            <div class="gallery-overlay-content">
+                <span class="gallery-cat-badge">Web</span>
+                <h4>Landing Page Empresarial</h4>
+                <p>HTML · CSS · JavaScript · AOS</p>
+            </div>
+            <div class="gallery-zoom-icon" aria-hidden="true">🔍</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="sistema" data-aos="zoom-in" data-aos-delay="100"
+             tabindex="0" role="button" aria-label="Ver proyecto: Sistema de Inventario"
+             onclick="abrirLightbox(1)">
+          <div class="gallery-thumb">
+            <img src="sistema de inventario.png" alt="Sistema de Inventario">
+            
+            <div class="gallery-overlay">
+              <div class="gallery-overlay-content">
+                <span class="gallery-cat-badge sistema">Sistema</span>
+                <h4>Sistema de Inventario</h4>
+                <p>JavaScript · CSS · LocalStorage</p>
+              </div>
+              <div class="gallery-zoom-icon" aria-hidden="true">🔍</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="web" data-aos="zoom-in" data-aos-delay="200"
+             tabindex="0" role="button" aria-label="Ver proyecto: Braza y Sabor Restaurante"
+             onclick="abrirLightbox(2)">
+          <div class="gallery-thumb">
+            <img src="braza y sabor.png" alt="Braza y Sabor Restaurante">
+            
+            <div class="gallery-overlay">
+              <div class="gallery-overlay-content">
+                <span class="gallery-cat-badge">Web</span>
+                <h4>Braza y Sabor</h4>
+                <p>HTML · CSS · GSAP · AOS</p>
+              </div>
+              <div class="gallery-zoom-icon" aria-hidden="true">🔍</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="diseno" data-aos="zoom-in" data-aos-delay="300"
+             tabindex="0" role="button" aria-label="Ver proyecto: Diseño de Identidad Visual"
+             onclick="abrirLightbox(3)">
+          <div class="gallery-thumb">
+            <img src="diseño de identidad visual.png" alt="Diseño de Identidad Visual">
+            
+            <div class="gallery-overlay">
+              <div class="gallery-overlay-content">
+                <span class="gallery-cat-badge diseno">Diseño</span>
+                <h4>Identidad Visual EM Code</h4>
+                <p>Branding · Paleta · Tipografía</p>
+              </div>
+              <div class="gallery-zoom-icon" aria-hidden="true">🔍</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="web" data-aos="zoom-in" data-aos-delay="150"
+             tabindex="0" role="button" aria-label="Ver proyecto: Aroma y Sabor Cafetería"
+             onclick="abrirLightbox(4)">
+          <div class="gallery-thumb">
+            <img src="aroma y sabor.png" alt="Aroma y Sabor Cafetería">
+            
+            <div class="gallery-overlay">
+              <div class="gallery-overlay-content">
+                <span class="gallery-cat-badge">Web</span>
+                <h4>Aroma y Sabor Cafetería</h4>
+                <p>HTML · CSS · JavaScript</p>
+              </div>
+              <div class="gallery-zoom-icon" aria-hidden="true">🔍</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery-item" data-cat="sistema" data-aos="zoom-in" data-aos-delay="250"
+             tabindex="0" role="button" aria-label="Ver proyecto: Sistema de Ventas Retail"
+             onclick="abrirLightbox(5)">
+          <div class="gallery-thumb">
+            <img src="sistema de ventas retail.png" alt="Sistema de Ventas Retail">
+            
+            <div class="gallery-overlay">
+              <div class="gallery-overlay-content">
+                <span class="gallery-cat-badge sistema">Sistema</span>
+                <h4>Sistema de Ventas Retail</h4>
+                <p>JavaScript · Dashboard · Reportes</p>
+              </div>
+              <div class="gallery-zoom-icon" aria-hidden="true">🔍</div>
+            </div>
+          </div>
+        </div>
+
+      </div></div>
+  </section>
+
+  <!-- ========== LIGHTBOX (evento click) ========== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada del proyecto" aria-hidden="true">
+    <div class="lightbox-backdrop" onclick="cerrarLightbox()"></div>
+    <div class="lightbox-box">
+      <button class="lightbox-close" onclick="cerrarLightbox()" aria-label="Cerrar vista ampliada">✕</button>
+      <button class="lightbox-prev" onclick="lightboxNav(-1)" aria-label="Proyecto anterior">‹</button>
+      <button class="lightbox-next" onclick="lightboxNav(1)"  aria-label="Proyecto siguiente">›</button>
+      <div class="lightbox-img" id="lightboxImg"></div>
+      <div class="lightbox-info">
+        <h3 id="lightboxTitle"></h3>
+        <p id="lightboxDesc"></p>
+        <div id="lightboxTags" class="lightbox-tags"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =============================================
+       SECCIÓN 6: CONTACTO
+       RF04: Animaciones con eventos
+  ============================================= -->
+<section class="contact" id="contacto">
+    <div class="container contact-grid">
+    <div data-aos="fade-right" data-aos-duration="800">
+        <span class="section-tag">Hablemos</span>
+        <h2 class="section-title">¿Listo para tu <span class="text-gradient">proyecto?</span></h2>
+        <p class="section-sub">Cuéntanos tu idea y te respondemos el mismo día.</p>
+        <div class="contact-info-cards">
+        <!-- WhatsApp -->
+        <a href="https://wa.me/51947872446?text=Hola%20EM%20Code%20Studio,%20quiero%20cotizar%20mi%20proyecto"
+            target="_blank" rel="noopener" class="contact-info-card contact-info-card--link"
+            aria-label="Escribir por WhatsApp">
+            <span class="contact-app-icon contact-app-icon--wa">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="26" height="26" aria-hidden="true">
+                <path fill="#25D366" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+                <path fill="#25D366" d="M11.998 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.304A9.958 9.958 0 0011.998 22c5.523 0 10-4.477 10-10S17.521 2 11.998 2zm0 18.25a8.243 8.243 0 01-4.206-1.151l-.301-.179-3.117.816.831-3.033-.196-.312A8.25 8.25 0 1111.998 20.25z"/>
+            </svg>
+            </span>
+            <div>
+            <h4>WhatsApp</h4>
+            <p>+51 947 872 446</p>
+            </div>
+            <span class="contact-arrow">→</span>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+            class="contact-info-card contact-info-card--link"
+            aria-label="Visitar página de Facebook">
+            <span class="contact-app-icon contact-app-icon--fb">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="26" height="26" aria-hidden="true">
+            <path fill="#1877F2" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+            </span>
+            <div>
+              <h4>Facebook</h4>
+              <p>EM Code Studio</p>
+            </div>
+            <span class="contact-arrow">→</span>
+          </a>
+
+          <!-- Gmail -->
+          <a href="mailto:contacto@emcodestudio.com"
+             class="contact-info-card contact-info-card--link"
+             aria-label="Enviar correo a contacto@emcodestudio.com">
+            <span class="contact-app-icon contact-app-icon--gm">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="26" height="26" aria-hidden="true">
+                <path fill="#EA4335" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+              </svg>
+            </span>
+            <div>
+              <h4>Gmail</h4>
+              <p>emcodestudio@gmail.com</p>
+            </div>
+            <span class="contact-arrow">→</span>
+          </a>
+
+          <!-- Ubicación -->
+          <div class="contact-info-card">
+            <span>📍</span>
+            <div><h4>Ubicación</h4><p>Calle Lima #15 Pacasmayo, La Libertad, Perú</p></div>
+          </div>
+        </div>
+        <a href="https://wa.me/51947872446?text=Hola%20EM%20Code%20Studio,%20quiero%20cotizar"
+           class="btn btn-primary btn-whatsapp" target="_blank">💬 Escribir por WhatsApp</a>
+      </div>
+
+      <!-- SVG Contacto animado (RF05) -->
+      <div data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+        <svg class="contact-svg" viewBox="0 0 320 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="cGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#33ff99"/>
+              <stop offset="100%" stop-color="#b388ff"/>
+            </linearGradient>
+          </defs>
+          <rect x="50" y="70" width="220" height="140" rx="14" fill="rgba(22,22,29,0.9)" stroke="url(#cGrad)" stroke-width="2"/>
+          <polyline points="50,70 160,158 270,70" fill="none" stroke="url(#cGrad)" stroke-width="2"/>
+          <line x1="82" y1="178" x2="168" y2="178" stroke="rgba(51,255,153,0.4)" stroke-width="2" stroke-linecap="round"/>
+          <line x1="82" y1="192" x2="140" y2="192" stroke="rgba(179,136,255,0.4)" stroke-width="2" stroke-linecap="round"/>
+          <circle r="6" fill="#33ff99" opacity="0">
+            <animate attributeName="cx" values="160;240;290" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="cy" values="130;70;30" dur="2.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite"/>
+          </circle>
+          <rect x="224" y="20" width="54" height="84" rx="9" fill="rgba(22,22,29,0.9)" stroke="#b388ff" stroke-width="2"/>
+          <circle cx="251" cy="57" r="12" fill="rgba(37,211,102,0.2)" stroke="rgba(37,211,102,0.5)" stroke-width="1.5">
+            <animate attributeName="r" values="12;16;12" dur="2s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <text x="251" y="61" text-anchor="middle" font-size="10" fill="rgba(37,211,102,0.9)">WA</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer" data-aos="fade-up">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo-wrap">
+          <svg class="footer-logo-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="fGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#33ff99"/>
+                <stop offset="100%" stop-color="#b388ff"/>
+              </linearGradient>
+            </defs>
+            <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="1.5"/>
+            <path d="M85,60 C105,72 75,95 95,108 C110,118 85,130 95,148"
+              fill="none" stroke="url(#fGrad)" stroke-width="12" stroke-linecap="round"/>
+            <circle cx="85" cy="60" r="7" fill="#33ff99"/>
+            <polygon points="88,153 102,153 95,168" fill="#b388ff"/>
+          </svg>
+          <div>
+            <p class="footer-name">EM CODE STUDIO</p>
+            <p class="footer-slogan">Desarrollo Web &amp; Sistemas</p>
+          </div>
+        </div>
+        <p class="footer-desc">Creamos páginas web y sistemas de venta para llevar tu negocio al mundo digital.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#tecnologias">Tecnologías</a></li>
+          <li><a href="#portafolio">Portafolio</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#">Creaciones de Páginas Web</a></li>
+          <li><a href="#">Sistemas de venta</a></li>
+          <li><a href="#">Mantenimiento de Equipos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="#">Calle Lima #15, Pacasmayo, La Libertad</a></li>
+          <li><a href="#">+51 947 872 446</a></li>
+          <li><a href="#">emcodestudio@gmail.com</a></li>
+        </ul>
+        <div class="social-links">
+          <!-- WhatsApp -->
+          <a href="https://wa.me/51947872446" target="_blank" rel="noopener"
+             class="social-btn social-btn--wa" aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true">
+              <path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347zM11.998 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.304A9.958 9.958 0 0011.998 22c5.523 0 10-4.477 10-10S17.521 2 11.998 2z"/>
+            </svg>
+          </a>
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/" target="_blank" rel="noopener"
+             class="social-btn social-btn--fb" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true">
+              <path fill="currentColor" d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+             class="social-btn social-btn--ig" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true">
+              <path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </a>
+          <!-- Gmail -->
+          <a href="mailto:contacto@emcodestudio.com"
+             class="social-btn social-btn--gm" aria-label="Gmail">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="18" height="18" aria-hidden="true">
+              <path fill="currentColor" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 010 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <p>&copy; 2026 EM Code Studio. Todos los derechos reservados.</p>
+        <p class="footer-made">Hecho con ❤️ en Pacasmayo, Perú</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+  <!-- LIBRERÍAS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="animaciones.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
